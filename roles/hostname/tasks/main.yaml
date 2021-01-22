@@ -1,0 +1,17 @@
+---
+- name: Ensure Hostname Set
+  hostname:
+    name: "{{ inventory_hostname }}"
+    use: systemd
+
+- name: Modify /etc/hosts with all hosts in cluster
+  become: true
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {% for host in groups['all'] %}
+      {% if host != inventory_hostname %}
+      {{ hostvars[host].ansible_host }} {{ host }}
+      {% endif %}
+      {% endfor %}
+      {{ ansible_default_ipv4.address }} {{ ansible_fqdn }} {{ ansible_hostname }}
