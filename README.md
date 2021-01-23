@@ -1,9 +1,8 @@
 ## Pi-K8s-Cluster: My Personal Raspberry Pi Cluster
 
-This is an ansible playbook heavily based off of 
-[k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible). There were some
-issues filed so I basically stole all the roles and then tweaked them as I
-needed to.
+This is an ansible playbook that reuses 
+[k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible) while adding some
+of my own stuff for maintianing the nodes.
 
 First run requires `--ask-pass` but subsequent runs should work.
 
