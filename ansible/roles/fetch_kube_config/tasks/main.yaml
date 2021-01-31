@@ -1,0 +1,6 @@
+---
+- name: Fetch config from master
+  fetch:
+    src: '{{ ansible_user_dir }}/.kube/config'
+    dest: '{{ lookup("env", "HOME") }}/.kube/config'
+    flat: yes

@@ -1,11 +1,12 @@
 ---
 - name: Ensure Hostname Set
+  become: yes
   hostname:
     name: "{{ inventory_hostname }}"
     use: systemd
 
 - name: Modify /etc/hosts with all hosts in cluster
-  become: true
+  become: yes
   blockinfile:
     path: /etc/hosts
     block: |

@@ -4,7 +4,5 @@
   get_url:
     url: "https://github.com/{{ github_user }}.keys"
     dest: "{{ ansible_user_dir }}/.ssh/authorized_keys"
-    #owner: "{{ ansible_effective_user_id }}"
-    #group: "{{ ansible_effective_group_id }}"
-    #mode: "u=rw,g=,o="
+    mode: "u=rw,g=,o="
     force: "{{ always_download_keys | default('no') }}"

@@ -1,6 +1,6 @@
 {
   "files.associations": {
-    "*.yaml": "jinja-yaml",
-    "*.yml": "jinja-yaml"
+    "**/ansible/**/*.yaml": "ansible-advanced",
+    "**/ansible/**/*.yml": "ansible-advanced"
   }
 }
