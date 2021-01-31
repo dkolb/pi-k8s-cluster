@@ -27,7 +27,3 @@ flux export source git flux-system \
 
 flux export kustomization flux-system \
   >> "$REPO_ROOT"/deployments/flux-system/gotk-sync.yaml
-
-pushd "$REPO_ROOT"/deployments/flux-system
-  kustomize create --autodetect
-popd
