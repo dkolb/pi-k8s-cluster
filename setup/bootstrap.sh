@@ -4,14 +4,11 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 
 echo "Bootstrapping flux..."
 
-pushd $REPO_ROOT/deployments
-mkdir -p flux-system/
+mkdir -p "$REPO_ROOT"/flux-system/
 
 flux install --version=latest \
   --watch-all-namespaces \
   --export > ./flux-system/gotk-components.yaml
-
-popd
 
 kubectl apply -f "$REPO_ROOT"/deployments/flux-system/gotk-components.yaml
 
@@ -24,3 +21,13 @@ flux create kustomization flux-system \
   --path="./deployments" \
   --prune=true \
   --interval=10m
+
+flux export source git flux-system \
+  > "$REPO_ROOT"/deployments/flux-system/gotk-sync.yaml
+
+flux export kustomization flux-system \
+  >> "$REPO_ROOT"/deployments/flux-system/gotk-sync.yaml
+
+pushd "$REPO_ROOT"/deployments/flux-system
+  kustomize create --autodetect
+popd
