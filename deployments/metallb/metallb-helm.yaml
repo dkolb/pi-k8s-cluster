@@ -9,6 +9,7 @@ metadata:
   name: metallb
   namespace: metallb
 spec:
+  interval: 10m
   chart:
     spec:
       chart: metallb
