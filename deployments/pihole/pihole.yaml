@@ -1,0 +1,83 @@
+---
+# Todo: Create NFS PV/PVC somehow from the NUC storage once it's been setup.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pihole
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: mojo2600
+  namespace: pihole
+spec:
+  url: https://mojo2600.github.io/pihole-kubernetes/
+  interval: 10m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: pihole
+      version: "1.8.29"
+      sourceRef:
+        kind: HelmRepository
+        name: mojo2600
+        namespace: pihole
+  values:
+  # https://github.com/MoJo2600/pihole-kubernetes/blob/master/charts/pihole/values.yaml
+    image:
+      repository: "pihole/pihole"
+      tag: "latest"
+    serviceDns:
+      type: LoadBalancer
+      loadBalancerIp: "192.168.86.80"
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    serviceWeb:
+      type: LoadBalancer
+      loadBalancerIp: "192.168.86.80"
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+    DNS1: "8.8.8.8"
+    DNS2: "8.8.4.4"
+    # doh:
+    #   enabled: true
+    #   name: cloudflared
+    #   repository: crazymax/cloudflared
+    #   tag: latest
+    dnsmasq:
+      customDnsEntries:
+        - address=/ifrit.home.krinchan.com/192.168.86.10
+        - address=/pihole.home.krinchan.com/192.168.86.3
+        - address=/zenuc.home.krinchan.com/192.168.86.2
+        - address=/node0.cluster0.home.krinchan.com/192.168.86.5
+        - address=/node1.cluster0.home.krinchan.com/192.168.86.6
+        - address=/node2.cluster0.home.krinchan.com/192.168.86.7
+        - address=/node3.cluster0.home.krinchan.com/192.168.86.8
+        - address=/node4.cluster0.home.krinchan.com/192.168.86.9
+    adlists:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://mirror1.malwaredomains.com/files/justdomains
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/fakenews/hosts
+      - https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser
+    blacklist:
+      - www.goooooooooooooooooooooooooooooooooooooooooooooooooooooooooogle.com
+    regex:
+      - (\.|^)foxnews\.com$
+      - (\.|^)foxbusiness\.com$
+    # persistentVolumeClaim:
+    #   enabled: true
+    #   existingClaim: nfsPihole
