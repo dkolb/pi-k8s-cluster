@@ -15,7 +15,6 @@ spec:
     name: flux-system
   timeout: 20s
   url: ssh://git@github.com/dkolb/pi-k8s-cluster
-
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
@@ -29,4 +28,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-

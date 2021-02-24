@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minecraft-backup
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: minecraft-backup-config
+  namespace: minecraft-backup
+spec:
+  encryptedData:
+    rclone.conf: AgB42b1Zl8LXskKhCws6e/XvfqI6wnZqab0qrp6ikSQpsmxLWFbxDhiLKT9hgGvK0C8X/EPniTPwoqo+zIbsmH/9z8XZwqQv9JSG/1J6FDCBIsfDhr+fXdip68U3u03w9YujGHYwBIy3nJki47Xpz/QZkN0ktYR5aeTnTZCUdPPNXT6i3bgvShC0/OpBk0eUxeF4OTSYb/7Z66gE3dtvvLUYqJXySctcf+UHr7kf+fc/XIKqWGBty2eeJGftmDQj65XXn0lE2nrqRvXxe+6ksIGQwNSG7FixVbjf0kP7n70xJRpSRbZCeA3SxUqBEwBkTRMX92iYi2piRUy4gcFmEC8bjmH/gSL1mt+g0gtUlCkfXFWKimJzedXbeDuDJhJhd6ePpB7wjnlsVGyY20JNkgAQEVAP/a8yg/PvGe8iSIzo9YS1V7OHf2AVlVS59vrzIjuNiJkS7QDEHxii7YIVXSB0LbqgGfvQ12P32tolFtGwODK7aj8vxaNFgmMTIRtoCGdgfQ23f05XPVqI+2t4vOG0QhbFj/fniAUy1q5HvI65QfoM0XN2kxZJDZRDOu5IR12pWaRkGmtwB3YaXZ31OLwl90eFKRrzis03RLDH/wYG1kngKIVolBEMmXJ3tihDtg7sHs0GD9KfhcoUd0BXi121y1eYw2u+tBLhRPcHoAfi0gppf4G+/+spktPVPDx9a5VxX+Ix5cxmpJxO9Pr57aQXjxtjcsgwRCh8srafwFrFbPKO/JfsxsGupbjaP6H826z8yDZkiSmG8EPPy9LKfqQ/V6Goaib6/mMsIa3ktUHe3zSBhdz4iZaGovQCdD/rcDireEB87S1TgGL+tQsNjpqPoWRlqAYujm/wmqhp+FVLRKdTxkUzh4BcAeGcZ5klAYDAXZeVKmwSsgW6hYtpwnnztG0IzC+EBty6L3N99n2CKHb67A1cYgFBFbFWXeAKyGIUAVO5NQKMUwvtDkOvnhLjfTcgj3F6W8h5E7Jl7+IE/qAfnj56bpj9GPtDBON1VfIh1Ry0Ydvt/8WoYmJAbThEdn7UU8IJscH0yH6pXYuX0VjoG86dYm0y0Q3VFJgG7AaIBpMeHFUaqpmobEYQM9pk52XpHxFZQH6Y/Qkk3o95FFi5aGbW7sIrJzXmrmw3/LI0ek8fNRC5/mudbzjciEMtOEwP1SiDgIvpcoM7fHndptgwAIu+gOGfI7Vg58XJRqAeU8xDxnIa1b4dGtoIXepp+4MOsTG4qIhIS8rNKsUvQ3xYEaQm87LPiVEMie5QCW6tVb+9mmbG1iw9fvCXlHoYN3hSRXI7rD5PZQIKCS8/fDQBk1L1YREr2hGVgwBTNVBWaM3BAUw=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: minecraft-backup-config
+      namespace: minecraft-backup
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: ghcrio-credentials
+  namespace: minecraft-backup
+spec:
+  encryptedData:
+    .dockerconfigjson: AgCnO3QWZsT937M6Zi1pHGnzyaKWScDaKAM8zlzovP7+l9mvFZDFM4V6pbas2MGQaxKEIu+VgkXR7N5fq/VGLc+HeCQQ/q2jM2LQ7JfRpW1rLWL6ja7RazWDzwH2MpjakPfKGmNT9uCuyAydHJC+vWZ/sTMFG79hoFnewzJWn+dpgezpSwjJqsWi7Hpi0wN2hPSa2SF+8wDrjuWws3lW5glCLj1z2Kj5IFAg2uOCUFiSwKDJXxf2AnnWH/f7FE6WgiQAmfDUG+Fq7YmP0BkynIjFQyvVZYJaQ5k1tfZ90HXrAVwT4XfLblOQ7+zLZ8M/5bwSnFCsVgbRXm79kWt3SVUR0qlJr+G0YTTnRKYHjoXe6ZwXLbQHlmTvbmzQk1LEbEk8Rtdy7anb2BJ5UV3vpWRB78t29HNlVj1nLz59IrF3TDNV5wmzqgrZ0CKVK8nAUv/+DoB4yXN/6FsuGK+j1zSfLNfuZAScPj/cOrSne6EdBi6N4ioqhCRjKZpT47LQzbu8eQ+eiIffR+e/0OgjwEEHwCBmDW/kPC1vkXxll00D0fHGuLYRT5MAQECyrkPLXYinNa6cbE5Ms6yOYPLikc+1FPei+a/yn/1Cw6wLBx6/m53WjX5vH04YqPCMIWsVlI9RyEi1+aOzJNekgPxwGMR/cdVqJafVc4ZAiS4+AYsuGlh6zGcrjS0WT8Ig2ElXgAXr2ZVXvlcc7rcr/cTJ8lZ+ZGWUfHjRz81EJ+SNckmjFaR2w+tpDEr6l2qGT2dCXj6Q7NFBIAAa5VFxLiqGFJIgFPmZ9zT6y4Z4sj2E8fyAgZY8TxabKNisz68Wz0ysDWRdYyYBs8M1Gk5fSS5+jAOQhg/roWK5U4iqZ64ETJs6DXuob1BN8Gz3XOKkNOITTaXKCjPjR9L5zUzd12eNV6WqRJUc1qcNpsLiCvFEWIFBggtTkQ5ZV2kiMcqiwQxh7WDXQJxPG/4bKN6dP+Pthy7BFqniow==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: ghcrio-credentials
+      namespace: minecraft-backup
+    type: kubernetes.io/dockerconfigjson
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: minecraft-backup-daily
+  namespace: minecraft-backup 
+spec:
+  schedule: "0 5 * * *"
+  startingDeadlineSeconds: 600 #10 minutes
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3 #default
+  failedJobsHistoryLimit: 3 #default is 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: minecraft-backup-daily
+              image: ghcr.io/dkolb/minecraft-backup:edge
+              imagePullPolicy: IfNotPresent
+              args:
+                - "--source 'crimsoncraft-ftp:/crimsoncraft.zip'"
+                - "--destination 'do-space:crimsoncraft-backups/'" 
+                - "-v"
+                - "--dry-run"
+              volumeMounts:
+                - name: rclone
+                  mountPath: "/root/.config/rclone"
+          volumes:
+            - name: rclone
+              secret:
+                secretName: rclone-config
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: ghcrio-credentials

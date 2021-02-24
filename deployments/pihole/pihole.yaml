@@ -36,14 +36,16 @@ spec:
       tag: "latest"
     serviceDns:
       type: LoadBalancer
-      loadBalancerIp: "192.168.86.80"
+      loadBalancerIP: "192.168.86.81"
       annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
+        metallb.universe.tf/allow-shared-ip: pihole-services
     serviceWeb:
-      type: LoadBalancer
-      loadBalancerIp: "192.168.86.80"
-      annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
+      type: ClusterIP
+    ingress:
+      enabled: true
+      path: /
+      hosts:
+        - pihole.home.krinchan.com
     resources:
       limits:
         cpu: 500m
@@ -61,7 +63,8 @@ spec:
     dnsmasq:
       customDnsEntries:
         - address=/ifrit.home.krinchan.com/192.168.86.10
-        - address=/pihole.home.krinchan.com/192.168.86.3
+        - address=/pihole.home.krinchan.com/192.168.86.80
+        - address=/sealed-secrets.home.krinchan.com/192.168.86.80
         - address=/zenuc.home.krinchan.com/192.168.86.2
         - address=/node0.cluster0.home.krinchan.com/192.168.86.5
         - address=/node1.cluster0.home.krinchan.com/192.168.86.6

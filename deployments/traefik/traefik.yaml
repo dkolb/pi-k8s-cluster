@@ -1,0 +1,37 @@
+---
+# Todo: Create NFS PV/PVC somehow from the NUC storage once it's been setup.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  url: https://helm.traefik.io/traefik
+  interval: 10m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: traefik
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: traefik
+  values:
+    # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+    service:
+      enabled: true
+      type: LoadBalancer
+      spec:
+        loadBalancerIP: "192.168.86.80"
