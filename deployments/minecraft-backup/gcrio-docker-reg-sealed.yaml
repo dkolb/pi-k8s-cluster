@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: ghcrio-credentials
+  namespace: minecraft-backup
+spec:
+  encryptedData:
+    .dockerconfigjson: AgCYRu64pmzKR/QDMT9ZUhH3aCimuTnGfnhCuxsMGRMlwLbOtLWQAuwBD9U4VWs7t4Qaod5kjFVKrt+l9bcMrIbc6RVe5ch4Bz5/KMFJRK7I4o7gm8AX82IXWUT9IyNusl9bJDO4yD0OglQywwLpmv1R8zGBMfFT0fl3WeAkr+yq3tt6Phqd9QGiG8FRraU0iUUxFw1kFhhRT1TW+x6p4+lTrELCtA53MonygTcYQKyaO5eXnjDyTz8VwqUxUg4Mg/g4Mu9MvND+MvDL/P+hGmjGUQZyIqTYbJ5qrJSyCWjYA3oPvGMtUTNdX/yQ+jLOP6xS9AHhy7d8lx0uelV+FNGdJDjX/AyV048VZUJLshXg1ZqTxLM8JyC4JzwyjX1n6+VXuqDP0CaZFDkSrQLJOAeqIxYrV/7FSZuDvFNQ9SlqUyIgy56024ELm24St0hBuRRR/HRz/UrZms7gzeVK9fZaoJzkKp9NRGv421ruhpdhVrXe0U++MrGZnZquPnqhqGfGhfXnME2/PahFQxVxdNlOmmbUFq8b8qcO5m2YzoGmwHK+wi20okVqBUQBc4uq5SPN2tLTK/IHXkd+3M9+9BY32/mHCU0WL8Ae0mB8l+PqGFDE34DwkcJRZrqgyQjmTu+KuHyq9FR4Kk6Vp5YNvQHM8H8AYuNnU3rj7lkEGj25QjOpKE32amW6+2/M6R44IRs3qE4eVVLqEMysz7Apb7nfAZs5yva6ba4jfWcWTiTnNKJ18SxBlXi1He16r2BfCvw8s58GPWSiHCoHU3aWMW2dxeQKn4gHlSjQNDLy6BozbMZo2ttarHNr1WDkvilmt7XS6H7xQKP+bYsIUqVJYyT1qI9bJzDrsqIY75zIL0kSPAMPmM1Ajri+GbWljF0niS5PWkR0H64L5U69P0ipEv/PdkoCRMI43Vv/lV06GWmr+PMeR3RCC/93PzckDg3FyN2JDiKR17gcg1Lt8rUzS9JteTIPWg==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: ghcrio-credentials
+      namespace: minecraft-backup
+    type: kubernetes.io/dockerconfigjson
+
