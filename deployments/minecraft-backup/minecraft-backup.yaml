@@ -10,7 +10,7 @@ metadata:
   name: minecraft-backup-daily
   namespace: minecraft-backup 
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "0 5 * * *"
   startingDeadlineSeconds: 600 #10 minutes
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3 #default
@@ -24,10 +24,12 @@ spec:
               image: ghcr.io/dkolb/minecraft-backup:edge
               imagePullPolicy: IfNotPresent
               args:
-                - "--source 'crimsoncraft-ftp:/crimsoncraft.zip'"
-                - "--destination 'do-space:crimsoncraft-backups/'" 
-                - "-v"
-                - "--dry-run"
+                - --source 
+                - crimsoncraft-ftp:/crimsoncraft.zip
+                - --destination
+                - do-space:crimsoncraft-backups/ 
+                - -v
+                - --dry-run
               volumeMounts:
                 - name: rclone
                   mountPath: "/root/.config/rclone"
