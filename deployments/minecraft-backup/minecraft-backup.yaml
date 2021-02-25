@@ -41,7 +41,7 @@ metadata:
   name: minecraft-backup-daily
   namespace: minecraft-backup 
 spec:
-  schedule: "0 5 * * *"
+  schedule: "*/1 * * * *"
   startingDeadlineSeconds: 600 #10 minutes
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3 #default
@@ -65,7 +65,7 @@ spec:
           volumes:
             - name: rclone
               secret:
-                secretName: rclone-config
+                secretName: minecraft-backup-config
           restartPolicy: Never
           imagePullSecrets:
             - name: ghcrio-credentials
