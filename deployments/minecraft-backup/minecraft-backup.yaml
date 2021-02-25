@@ -4,39 +4,32 @@ kind: Namespace
 metadata:
   name: minecraft-backup
 ---
-apiVersion: batch/v1beta1
-kind: CronJob
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
 metadata:
-  name: minecraft-backup-daily
-  namespace: minecraft-backup 
+  name: minecraft-backup
+  namespace: minecraft-backup
 spec:
-  schedule: "0 5 * * *"
-  startingDeadlineSeconds: 600 #10 minutes
-  concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 3 #default
-  failedJobsHistoryLimit: 3 #default is 1
-  jobTemplate:
+  url: https://dkolb.github.io/charts/
+  interval: 10m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minecraft-backup
+  namespace: minecraft-backup
+spec:
+  interval: 10m
+  chart:
     spec:
-      template:
-        spec:
-          containers:
-            - name: minecraft-backup-daily
-              image: ghcr.io/dkolb/minecraft-backup:edge
-              imagePullPolicy: IfNotPresent
-              args:
-                - --source 
-                - crimsoncraft-ftp:/crimsoncraft.zip
-                - --destination
-                - do-space:crimsoncraft-backups/ 
-                - -v
-                - --dry-run
-              volumeMounts:
-                - name: rclone
-                  mountPath: "/root/.config/rclone"
-          volumes:
-            - name: rclone
-              secret:
-                secretName: minecraft-backup-config
-          restartPolicy: Never
-          imagePullSecrets:
-            - name: ghcrio-credentials
+        chart: minecraft-backup
+        version: "0.1.1"
+        sourceRef:
+          kind: HelmRepository
+          name: minecraft-backup
+          namespace: minecraft-backup
+  values:
+    imagePullSecrets:
+      - name: ghcrio-credentials
+    source: "crimsoncraft-ftp:/crimsoncraft.zip"
+    destination: "do-space:crimsoncraft-backups/"
