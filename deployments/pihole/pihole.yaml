@@ -64,7 +64,9 @@ spec:
       customDnsEntries:
         - address=/ifrit.home.krinchan.com/192.168.86.10
         - address=/pihole.home.krinchan.com/192.168.86.80
-        - address=/sealed-secrets.home.krinchan.com/192.168.86.80
+        - address=/alertmanager.home.krinchan.com/192.168.86.80
+        - address=/grafana.home.krinchan.com/192.168.86.80
+        - address=/prometheus.home.krinchan.com/192.168.86.80
         - address=/zenuc.home.krinchan.com/192.168.86.2
         - address=/node0.cluster0.home.krinchan.com/192.168.86.5
         - address=/node1.cluster0.home.krinchan.com/192.168.86.6
