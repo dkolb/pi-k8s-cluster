@@ -68,6 +68,7 @@ spec:
         - address=/grafana.home.krinchan.com/192.168.86.80
         - address=/prometheus.home.krinchan.com/192.168.86.80
         - address=/zenuc.home.krinchan.com/192.168.86.2
+        - address=/plex.home.krinchan.com/192.168.86.3
         - address=/node0.cluster0.home.krinchan.com/192.168.86.5
         - address=/node1.cluster0.home.krinchan.com/192.168.86.6
         - address=/node2.cluster0.home.krinchan.com/192.168.86.7
