@@ -1,0 +1,12 @@
+---
+- name: Install system updates.
+  become: yes
+  apt:
+    upgrade: yes
+    update_cache: yes
+- name: Install packages
+  become: yes
+  apt:
+    name: 
+      - nfs-common
+    state: present

@@ -6,6 +6,7 @@
   roles:
     - role: hostname
     - role: authorize_github_keys
+    - role: install_additional_packages
 
 - import_playbook: k3s-ansible/site.yml
 
