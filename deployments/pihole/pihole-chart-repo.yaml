@@ -1,10 +1,4 @@
 ---
-# Todo: Create NFS PV/PVC somehow from the NUC storage once it's been setup.
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: pihole
----
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
@@ -84,6 +78,6 @@ spec:
     regex:
       - (\.|^)foxnews\.com$
       - (\.|^)foxbusiness\.com$
-    # persistentVolumeClaim:
-    #   enabled: true
-    #   existingClaim: nfsPihole
+    persistentVolumeClaim:
+      enabled: true
+      existingClaim: pihole-volume-claim
