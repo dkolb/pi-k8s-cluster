@@ -44,3 +44,5 @@ spec:
         paths:
           - /
         pathType: ImplementationSpecific
+      resources:
+          cpu: "1"
