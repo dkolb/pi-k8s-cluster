@@ -20,6 +20,8 @@ spec:
       enabled: false
     kubeScheduler:
       enabled: false
+    prometheusOperator:
+      configReloaderCpu: 200m
     alertmanager:
       ingress:
         enabled: true
