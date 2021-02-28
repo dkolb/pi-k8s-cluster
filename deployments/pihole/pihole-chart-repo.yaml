@@ -57,3 +57,6 @@ spec:
     persistentVolumeClaim:
       enabled: true
       existingClaim: pihole-volume-claim
+    monitoring:
+      podMonitor:
+        enabled: true
