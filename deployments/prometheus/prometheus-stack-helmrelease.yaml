@@ -46,4 +46,5 @@ spec:
         pathType: ImplementationSpecific
       prometheusSpec:
         resources:
-            cpu: "500m"
+            requests:
+              cpu: "500m"
