@@ -49,11 +49,11 @@ spec:
         memory: 256Mi
     DNS1: "8.8.8.8"
     DNS2: "8.8.4.4"
-    # doh:
-    #   enabled: true
-    #   name: cloudflared
-    #   repository: crazymax/cloudflared
-    #   tag: latest
+    doh:
+      enabled: true
+      name: cloudflared
+      repository: crazymax/cloudflared
+      tag: latest
     persistentVolumeClaim:
       enabled: true
       existingClaim: pihole-volume-claim
