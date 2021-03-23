@@ -64,6 +64,8 @@ spec:
   values:
     image:
       tag: latest
+    puid: 5000
+    pgid: 5000
     hostnetwork: true
     persistence:
       enabled: true
