@@ -67,7 +67,7 @@ spec:
     tz: America/New_York
     puid: 5000
     pgid: 5000
-    hostnetwork: true
+    hostNetwork: true
     persistence:
       enabled: true
       existingClaim: homebridge-volume-claim
