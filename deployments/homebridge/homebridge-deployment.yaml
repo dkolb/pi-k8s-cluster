@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: homebridge
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: homebridge-volume
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: homebridge-nfs
+  mountOptions:
+    - hard
+    - nfsvers=3
+  nfs:
+    path: /mnt/InternalNvmeStorage/k8sVolumes/homebridge
+    server: "192.168.86.2"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: homebridge-volume-claim
+  namespace: homebridge
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: homebridge-nfs
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: k8s-at-home
+  namespace: homebridge
+spec:
+  url: https://k8s-at-home.com/charts/
+  interval: 1h
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homebridge-stack
+  namespace: homebridge
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: homebridge
+      version: "~1.0.4"
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: homebridge
+  values:
+    hostnetwork: true
+    persistence:
+      enabled: true
+      existingClaim: homebridge-volume-claim
+    ingress:
+      enabled: true
+      hosts: [ homebridge.home.krinchan.com ]
+      annotations: {}
+      
