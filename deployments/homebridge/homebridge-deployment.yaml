@@ -78,4 +78,3 @@ spec:
       hosts:
         - host: homebridge.home.krinchan.com
       annotations: {}
-
