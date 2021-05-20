@@ -4,31 +4,15 @@ kind: Namespace
 metadata:
   name: minecraft-backup
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
 metadata:
   name: minecraft-backup
   namespace: minecraft-backup
 spec:
-  url: https://dkolb.github.io/charts/
-  interval: 1h
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: minecraft-backup
-  namespace: minecraft-backup
-spec:
-  interval: 1h
-  chart:
-    spec:
-        chart: minecraft-backup
-        version: "0.1.2"
-        sourceRef:
-          kind: HelmRepository
-          name: minecraft-backup
-          namespace: minecraft-backup
-  values:
+  repo: https://dkolb.github.io/charts/
+  chart: minecraft-backup
+  valuesContent: |-
     imagePullSecrets:
       - name: ghcrio-credentials
     source: "crimsoncraft-ftp:/crimsoncraft.zip"

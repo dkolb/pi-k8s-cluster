@@ -1,0 +1,6 @@
+---
+# Todo: Create NFS PV/PVC somehow from the NUC storage once it's been setup.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik

@@ -1,30 +1,13 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: dkub
-  namespace: pihole
-spec:
-  url: https://dkolb.github.io/charts/
-  interval: 1h
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
 metadata:
   name: pihole
   namespace: pihole
 spec:
-  interval: 1h
-  chart:
-    spec:
-      chart: pihole
-      version: "1.8.29"
-      sourceRef:
-        kind: HelmRepository
-        name: dkub
-        namespace: pihole
-  values:
+  repo: https://dkolb.github.io/charts/
+  chart: pihole
   # https://github.com/MoJo2600/pihole-kubernetes/blob/master/charts/pihole/values.yaml
+  valuesContent: |-
     image:
       repository: "pihole/pihole"
       tag: "latest"
