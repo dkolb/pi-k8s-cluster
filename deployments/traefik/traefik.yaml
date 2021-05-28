@@ -8,7 +8,6 @@ spec:
   repo: https://helm.traefik.io/traefik
   chart: traefik
   targetNamespace: traefik
-  interval: 10m
   # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   valuesContent: |-
     service:
