@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: unifi-volume
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: unifi-nfs
+  mountOptions:
+    - hard
+    - nfsvers=3
+  nfs:
+    path: /mnt/InternalNvmeStorage/k8sVolumes/unifi
+    server: "192.168.86.2"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: unifi-volume-claim
+  namespace: unifi-controller
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: unifi-nfs

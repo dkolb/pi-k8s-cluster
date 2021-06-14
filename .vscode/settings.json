@@ -1,6 +1,11 @@
 {
-  "files.associations": {
-    "**/ansible/**/*.yaml": "ansible-advanced",
-    "**/ansible/**/*.yml": "ansible-advanced"
-  }
+  "yaml.schemas": {
+    "Kubernetes": "**/deployments/**/*.yaml",
+    "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-playbook.json": "/**/ansible/*.yaml",
+    "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-vars.json": "/**/ansible/**/group_vars/*.yaml",
+    "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json": "/**/ansible/**/tasks/*.yaml",
+    "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-lint.json": "/**/ansible/.ansible-lint"
+  },
+  "ansible.validate.run": "onSave",
+  "ansible.validate.enable": false,
 }
